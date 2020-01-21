@@ -35,5 +35,6 @@ gradlePlugin {
     val greeting by plugins.creating {
         id = "com.chopshop166.plugin"
         implementationClass = "com.chopshop166.plugin.ChopShopPlugin"
+        version = "0.1"
     }
 }
