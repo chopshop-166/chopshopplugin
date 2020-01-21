@@ -30,9 +30,19 @@ dependencies {
     compileOnly(gradleApi())
 }
 
+
+pluginBundle {
+    // These settings are set for the whole plugin bundle
+    website = "http://www.chopshop166.com/"
+    vcsUrl = "https://github.com/chopshop-166/chopshopplugin"
+    tags = listOf("tag", "frc", "wpilib")
+}
+
 gradlePlugin {
     // Define the plugin
-    val greeting by plugins.creating {
+    val chopshopplugin by plugins.creating {
+        displayName = "Chop Shop Gradle Plugin"
+        description = "Add Chop Shop dependencies and VCS information"
         id = "com.chopshop166.plugin"
         implementationClass = "com.chopshop166.plugin.ChopShopPlugin"
         version = "0.1"
