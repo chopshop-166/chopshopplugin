@@ -17,6 +17,10 @@ class ChopShopPlugin implements Plugin<Project> {
 
             // Get the Chop Shop configuration
             extension = project.extensions.create('chopshop', ChopShopExtension)
+
+            repositories {
+                maven { url 'https://jitpack.io' }
+            }
         }
     }
 }
