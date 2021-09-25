@@ -5,6 +5,7 @@ import org.gradle.api.java.archives.internal.DefaultManifest
 class ChopShopExtension {
     String version = "2020.1.0"
     String lightdriveVersion = "2020.0.0"
+    Boolean useKotlin = false
 
     Closure manifest(String robotMainClass) {
         def runCommand = { String... args ->
@@ -24,7 +25,11 @@ class ChopShopExtension {
     }
 
     List<String> deps() {
-        return ["com.chopshop166:chopshoplib:${version}".toString(),
-                "com.chopshop166:lightdrive-mirror:${lightdriveVersion}".toString()]
+        def depList = ["com.chopshop166:chopshoplib:core:${version}".toString()]
+        if (useKotlin)
+        {
+            depList << ["com.chopshop166:chopshoplib:kotlinext:${version}".toString()]
+        }
+        return depList
     }
 }

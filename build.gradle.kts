@@ -32,6 +32,6 @@ gradlePlugin {
         description = "Add Chop Shop dependencies and VCS information"
         id = "com.chopshop166.plugin"
         implementationClass = "com.chopshop166.plugin.ChopShopPlugin"
-        version = "0.5"
+        version = "0.6"
     }
 }
