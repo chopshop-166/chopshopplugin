@@ -3,8 +3,7 @@ package com.chopshop166.plugin
 import org.gradle.api.java.archives.internal.DefaultManifest
 
 class ChopShopExtension {
-    String version = "2020.1.0"
-    String lightdriveVersion = "2020.0.0"
+    String version = "2021.1.2"
     Boolean useKotlin = false
 
     Closure manifest(String robotMainClass) {
