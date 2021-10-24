@@ -5,8 +5,8 @@ plugins {
     // Apply the plugin to publish plugins
     id("com.gradle.plugin-publish") version "0.16.0"
 
-    // Apply the Groovy plugin to add support for Groovy
-    groovy
+    // Apply the Kotlin plugin to add support for Kotlin
+    `kotlin-dsl`
 }
 
 repositories {
@@ -16,7 +16,6 @@ repositories {
 dependencies {
     compileOnly(gradleApi())
 }
-
 
 pluginBundle {
     // These settings are set for the whole plugin bundle
