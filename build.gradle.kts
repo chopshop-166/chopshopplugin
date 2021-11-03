@@ -9,6 +9,9 @@ plugins {
     `kotlin-dsl`
 }
 
+group = "com.chopshop166"
+version = "0.7"
+
 repositories {
     mavenCentral()
 }
@@ -21,7 +24,7 @@ pluginBundle {
     // These settings are set for the whole plugin bundle
     website = "http://www.chopshop166.com/"
     vcsUrl = "https://github.com/chopshop-166/chopshopplugin"
-    tags = listOf("tag", "frc", "wpilib")
+    tags = listOf("git", "frc", "wpilib")
 }
 
 gradlePlugin {
@@ -31,6 +34,6 @@ gradlePlugin {
         description = "Add Chop Shop dependencies and VCS information"
         id = "com.chopshop166.plugin"
         implementationClass = "com.chopshop166.plugin.ChopShopPlugin"
-        version = "0.6"
+        version = "0.7"
     }
 }

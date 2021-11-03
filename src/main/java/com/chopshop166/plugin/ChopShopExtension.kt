@@ -8,14 +8,13 @@ import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-open class ChopShopExtension {
+open class ChopShopExtension(val project : Project) {
     var version = "2021.1.2"
-    var project : Project? = null
 
     fun setupManifest(man : Manifest, robotMainClass : String) {
         fun List<String>.runCommand(currentWorkingDir: File = File("./")): String {
             val byteOut = ByteArrayOutputStream()
-            project?.exec {
+            project.exec {
                 workingDir = currentWorkingDir
                 commandLine = this@runCommand
                 standardOutput = byteOut
@@ -36,5 +35,5 @@ open class ChopShopExtension {
         ))
     }
 
-    fun deps(vararg libs : String) = (listOf("core") + libs).map { "com.chopshop166:chopshoplib:${it}:${version}" }
+    fun deps(vararg libs : String) = (listOf("core") + libs).map { "com.chopshop166.chopshoplib:${it}:${version}" }
 }
