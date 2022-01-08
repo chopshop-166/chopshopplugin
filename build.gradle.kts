@@ -10,7 +10,8 @@ plugins {
 }
 
 group = "com.chopshop166"
-version = "0.7"
+version = "0.8"
+
 
 repositories {
     mavenCentral()
@@ -18,6 +19,12 @@ repositories {
 
 dependencies {
     compileOnly(gradleApi())
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 pluginBundle {
@@ -34,6 +41,6 @@ gradlePlugin {
         description = "Add Chop Shop dependencies and VCS information"
         id = "com.chopshop166.plugin"
         implementationClass = "com.chopshop166.plugin.ChopShopPlugin"
-        version = "0.7"
+        version = version
     }
 }
