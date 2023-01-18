@@ -8,15 +8,17 @@ import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.from
 import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.repositories
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 
 class ChopShopPlugin : Plugin<Project> {
     override fun apply(project : Project) : Unit = with(project) {
         // Get the Chop Shop configuration
-        extensions.create<ChopShopExtension>("chopshop", project)
+        extensions.create<ChopShopExtension>("chopshop", this)
         // Add dependencies
         repositories.maven(url = "https://jitpack.io")
-        // Make a fat JAR
+        // Add the subsystem template task
+        tasks.register<SubsystemTask>("createSubsystem")
         afterEvaluate {
             tasks.withType<Jar>().configureEach {
                 from(configurations.getByName("runtimeClasspath").map { if (it.isDirectory()) {it} else zipTree(it) })

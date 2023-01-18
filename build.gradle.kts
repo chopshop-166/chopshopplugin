@@ -3,14 +3,19 @@ plugins {
     `java-gradle-plugin`
 
     // Apply the plugin to publish plugins
-    id("com.gradle.plugin-publish") version "0.16.0"
+    id("com.gradle.plugin-publish") version "1.1.0"
 
     // Apply the Kotlin plugin to add support for Kotlin
     `kotlin-dsl`
 }
 
 group = "com.chopshop166"
-version = "0.8"
+version = "0.9"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 
 repositories {
@@ -21,9 +26,9 @@ dependencies {
     compileOnly(gradleApi())
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
