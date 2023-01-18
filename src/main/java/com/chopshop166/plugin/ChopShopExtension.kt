@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 open class ChopShopExtension(val project : Project) {
-    var version = "2022.1.1"
+    var version = "2023.1.1"
 
     fun setupManifest(man : Manifest, robotMainClass : String) {
         fun List<String>.runCommand(currentWorkingDir: File = File("./")): String {
