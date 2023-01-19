@@ -51,17 +51,22 @@ abstract class SubsystemTask : DefaultTask() {
     
     @get:Option(option="name", description="name of subsystem to create")
     @get:Input
-    abstract val subsystemName: String
+    abstract val subsystemName: Property<String>
 
-    @Option(option="dir", description="directory for source code")
-    @Input
-    var robot_path: String = "src/main/java/frc/robot"
+    @get:Option(option="dir", description="directory for source code")
+    @get:Input
+    abstract val robot_path: Property<String>
+    
+    init {
+        robot_path.convention("src/main/java/frc/robot")
+    }
 
     @TaskAction
     fun addSubsystem() {
-        logger.lifecycle("Creating subsystem for: ${subsystemName}")
+        val subName = subsystemName.get()
+        logger.lifecycle("Creating subsystem for: ${subName}")
         var className = ""
-        for (part in subsystemName.split("\\s")) {
+        for (part in subName.split("\\s")) {
             className += part[0].toUpperCase() + part.substring(1)
         }
         val instanceName = className[0].toLowerCase() + className.substring(1)
@@ -74,13 +79,13 @@ abstract class SubsystemTask : DefaultTask() {
     }
 
     fun saveTemplate(path : String, template : String, classname : String) {
-        val final_path = robot_path + "/" + path
+        val final_path = robot_path.get() + "/" + path
         var new_template = template.replace("\${CLASSNAME}", classname)
         project.file(final_path).writeText(new_template)
     }
 
     fun insertInto(filename : String, keyword : String, line : String) {
-        val targetFile = project.file(robot_path + "/" + filename)
+        val targetFile = project.file(robot_path.get() + "/" + filename)
         val text = targetFile.readText()
         val replLine = "${keyword}\n${line}\n"
         targetFile.writeText(text.replace(keyword, replLine))

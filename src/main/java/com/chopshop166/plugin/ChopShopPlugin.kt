@@ -19,10 +19,5 @@ class ChopShopPlugin : Plugin<Project> {
         repositories.maven(url = "https://jitpack.io")
         // Add the subsystem template task
         tasks.register<SubsystemTask>("createSubsystem")
-        afterEvaluate {
-            tasks.withType<Jar>().configureEach {
-                from(configurations.getByName("runtimeClasspath").map { if (it.isDirectory()) {it} else zipTree(it) })
-            }
-        }
     }
 }
