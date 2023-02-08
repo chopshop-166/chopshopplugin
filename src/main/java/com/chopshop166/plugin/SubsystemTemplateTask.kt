@@ -18,7 +18,7 @@ public class ${'$'}{CLASSNAME} extends SmartSubsystemBase {
 
     public ${'$'}{CLASSNAME}(final ${'$'}{CLASSNAME}Map map) {
         this.map = map;
-    } 
+    }
 
     @Override
     public void reset() {
@@ -48,7 +48,7 @@ public class ${'$'}{CLASSNAME}Map {
 """
 
 abstract class SubsystemTask : DefaultTask() {
-    
+
     @get:Option(option="name", description="name of subsystem to create")
     @get:Input
     abstract val subsystemName: Property<String>
@@ -56,7 +56,7 @@ abstract class SubsystemTask : DefaultTask() {
     @get:Option(option="dir", description="directory for source code")
     @get:Input
     abstract val robot_path: Property<String>
-    
+
     init {
         robot_path.convention("src/main/java/frc/robot")
     }
@@ -74,8 +74,7 @@ abstract class SubsystemTask : DefaultTask() {
         saveTemplate("subsystems/${className}.java", subsystem_class, className)
         insertInto("Robot.java", "\$Subsystems\$", "    ${className} ${instanceName} = new ${className}(map.get${className}Map());")
         insertInto("Robot.java", "\$Imports\$", "import frc.robot.subsystems.${className};")
-        insertInto("maps/RobotMap.java", "\$Maps\$", "    private ${className}Map ${instanceName}Map = new ${className}Map();")
-        insertInto("maps/RobotMap.java", "\$Getters\$", "    public ${className}Map get${className}Map() {\n        return ${instanceName}Map;\n    }")
+        insertInto("maps/RobotMap.java", "\$Getters\$", "    public ${className}Map get${className}Map() {\n        return new ${className}Map();\n    }")
     }
 
     fun saveTemplate(path : String, template : String, classname : String) {
